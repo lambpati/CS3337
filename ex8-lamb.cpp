@@ -1,3 +1,5 @@
+// Name: Patience Lamb
+// Brief: Does the entirety of HW8 coding in one source file
 #include <iostream>
 #include <bitset>
 
