@@ -17,7 +17,8 @@ class UserControl{
     void setRestart(bool r){ restart = r; }
 
     // Getters
-    static getFileName const(){ return fileName; }
+    std::string getFileName const(){ return fileName; }
+    int getNext const(){ return next; }
 
     // Methods
 
