@@ -1,12 +1,13 @@
 #include<iostream>
 #include "UserDisplay.hh"
+#include "InstructionConversion.hh"
 
 
 void UserDisplay::printCurrentStep(){
-  std::cout << "Executing: " << currentIns << " at " << currentAddr << std::endl;
-  std::cout << "Next instruction: " << nextIns << " at " << nextAddr << " from line " << std::endl;
-  std::cout << "Press ENTER to execute the next instruction" << std::endl;
-  std::cout << "Press X to reset emulator" << std::endl;
+  std::cout << "Executing: " << InstructionConversion::getIns() << " at " << InstructionConversion::getAddr() << std::endl;
+  std::cout << "Press N to execute the next instruction" << std::endl;
+  std::cout << "Press R to reset emulator" << std::endl;
+  std::cout << "Press X to stop emulator" << std::endl;
 }
 
 void UserDisplay::printStartDisplay(){
@@ -14,5 +15,5 @@ void UserDisplay::printStartDisplay(){
 }
 
 void UserDisplay::printEndDisplay(){
-  std::cout << "File has terminated. " << std::endl;
+  std::cout << "Program has terminated at memory address " << InstructionConversion::getAddr() << std::endl;
 }

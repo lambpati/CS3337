@@ -1,11 +1,10 @@
 #include <string>
 #include "InstructionConversion.hh"
 #include "readWriteLoadStore.hh"
-
+#include "BranchIns.hh"
 #include "Arithmetic.hh"
-#include "Memory.hh"
 #include "ReadProgram.hh"
-#include "UserControl.hh"
+#include "WriteProgram.hh"
 
 int InstructionConversion::instr;
 int InstructionConversion::addr;
@@ -21,7 +20,8 @@ void InstructionConversion::convert(int memory){
 }
 
 void InstructionConversion::halt(){
-  exit(0);
+  //exit(0);
+  WriteProgram::writeToOutput(readWriteLoadStore::getWrittenValues());
 }
 
 std::string InstructionConversion::determineIns(){
@@ -60,20 +60,20 @@ std::string InstructionConversion::determineIns(){
       instruction = "ttMultiply";
       break;
     case 40 :
-      //branchIns::branch(a);
+      BranchIns::branch(addr);
       instruction = "ttBranch";
       break;
     case 41 :
-      //branchIns::branchNeg(a);
+      BranchIns::branchNeg(addr);
       instruction = "ttBranchNegative";
       break;
     case 42 :
-      //branchIns::branchZero(a);
+      BranchIns::branchZero(addr);
       instruction = "ttBranchZero";
       break;
     case 43 :
-      InstructionConversion::halt();
       instruction = "ttHalt";
+      InstructionConversion::halt();
       break;
   }
   return instruction;

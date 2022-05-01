@@ -4,21 +4,25 @@
 class UserControl{
   private:
     static std::string fileName;
-    static bool next;
-    static bool restart;
+    static bool uNext;
+    static bool uRestart;
+    static bool uStop;
 
   public:
     UserControl() = default;
 
     // Setters
-    static void setFileName(std::string f){ fileName = f; }
-    void setNext(bool c){ next = c; }
-    void setRestart(bool r){ restart = r; }
+    static void setFileName(std::string f){ fileName = f; } 
+    void setNext(bool c){ uNext = c; }
+    void setRestart(bool r){ uRestart = r; }
 
     // Getters
     static std::string getFileName() { return fileName; }
-    int getNext() const{ return next; }
+    static int getNext() { return uNext; }
+    static int getRestart(){ return uRestart; }
+    static int getStop(){ return uStop; }
 
     // Methods
+    static void DetermineControl();
 
 };

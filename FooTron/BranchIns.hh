@@ -3,6 +3,8 @@
 class BranchIns{
   private:
     static int addr;
+    static int instr;
+    
   public:
     BranchIns() = default;
 

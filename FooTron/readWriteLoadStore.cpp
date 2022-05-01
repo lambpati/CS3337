@@ -3,8 +3,10 @@
 #include "readWriteLoadStore.hh"
 #include "Accumulator.hh"
 #include "Memory.hh"
+#include "WriteProgram.hh"
 
 int readWriteLoadStore::value;
+std::vector<int> readWriteLoadStore::writtenValues;
 
 void readWriteLoadStore::read(int a){
   std::cout << "Enter value for reading: ";
@@ -14,6 +16,8 @@ void readWriteLoadStore::read(int a){
 
 void readWriteLoadStore::write(int a){
   value = Memory::getMemory(a);
+  writtenValues.push_back(value);
+  //WriteProgram::writeToOutput(value);
   std::cout << "value written: " << value << std::endl;
 }
 

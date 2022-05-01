@@ -1,20 +1,22 @@
 #include "UserDisplay.hh"
 #include "UserControl.hh"
 #include "InstructionConversion.hh"
-#include "readWriteLoadStore.hh"
-
-#include "Arithmetic.hh"
 #include "Memory.hh"
 #include "ReadProgram.hh"
-#include "UserControl.hh"
+
 #include <string>
 #include <iostream>
 #include <unistd.h>
 #include <stdio.h>
 
+// Paths relative to build folder
+// ../Examples/footronSample1.txt
+// ../Examples/footronSample2.txt
+// ../Examples/footronSample3.txt
 
 
 int main(int argc, char const *argv[]) {
+  int a = 0;
   UserDisplay::printStartDisplay();
   // For debugging and pwd purposes
   char cwd[1024];
@@ -22,14 +24,43 @@ int main(int argc, char const *argv[]) {
   getcwd(cwd, sizeof(cwd));
   printf("Current working dir: %s\n", cwd);
 
-  // Path according to build folder
-  UserControl::setFileName("../Examples/footronSample1.txt");
+  std::string name;
+  std::cin >> name;
+
+  UserControl::setFileName(name);
 
   ReadProgram::read();
+  InstructionConversion::convert(Memory::getMemory(a));
+  InstructionConversion::determineIns();
+  UserDisplay::printCurrentStep();
+  a++;
 
-  for(int a = 0; a < ReadProgram::getLineNum(); a++){
-    InstructionConversion::convert(Memory::getMemory(a));
-    std::cout << InstructionConversion::determineIns();
+try{
+    while(!UserControl::getStop() && InstructionConversion::getIns() != "ttHalt"){
+      UserControl::DetermineControl();
+      if(UserControl::getNext()){
+        InstructionConversion::convert(Memory::getMemory(a));
+        InstructionConversion::determineIns();
+        UserDisplay::printCurrentStep();
+        a++;
+      }
+      else if(UserControl::getRestart()){
+        a = 0;
+        ReadProgram::read();
+        InstructionConversion::convert(Memory::getMemory(a));
+        InstructionConversion::determineIns();
+        UserDisplay::printCurrentStep();
+        a++;
+      }
+      else if(UserControl::getStop()){
+        InstructionConversion::halt();
+      }
+    }
+    UserDisplay::printEndDisplay();
+  }
+  catch(const std::out_of_range& e){
+    UserDisplay::printEndDisplay();
+    std::cerr << e.what() << std::endl;
   }
 
   return 0;

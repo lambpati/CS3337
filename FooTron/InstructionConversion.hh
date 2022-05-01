@@ -6,8 +6,6 @@ class InstructionConversion{
     static std::string instruction;
     static std::string address;
 
-    static void halt();
-
   public:
     static int instr;
     static int addr;
@@ -17,8 +15,10 @@ class InstructionConversion{
     // Methods
     static std::string determineIns();
     static void convert(int m);
+    static void halt();
 
-    // Setters
-
+    // Getters
+    static std::string getIns(){ return instruction; }
+    static std::string getAddr() { return address; }
 
 };

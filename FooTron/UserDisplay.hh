@@ -22,7 +22,7 @@ class UserDisplay{
     void setCounterNum(int n){ counterNum = n; }
 
     // Methods
-    void printCurrentStep();
+    static void printCurrentStep();
     static void printStartDisplay();
     static void printEndDisplay();
 
