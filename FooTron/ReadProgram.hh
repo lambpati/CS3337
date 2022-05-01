@@ -4,19 +4,15 @@
 
 class ReadProgram{
   private:
-    std::ifstream file;
-    static int lineAmt;
-    int lineNum;
+    static std::ifstream file;
+    static int lineNum;
     static std::string contents;
   public:
-    ReadProgram();
+    ReadProgram() = default;
 
     // Getters
-    int getLineAmt const (){ return lineAmt; }
-    int getLineNum const () { return lineNum; }
+    static int getLineNum() { return lineNum; }
 
-    // Methods
-    std::string readNextLine();
-
-
+    //Methods
+    static void read();
 };

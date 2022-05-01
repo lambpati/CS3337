@@ -3,16 +3,13 @@
 
 class Accumulator{
   private:
-    int instruction;
-    int location;
+    static int location;
   public:
-    Accumulator(int, int);
-    Accumulator();
-
-    // Methods
-    void parseLine();
+    Accumulator() = default;
 
     // Getters
-    int getInstruction const(){ return instruction; }
-    int getLocation const(){ return location; }
+    static int getLocation(){ return location; }
+
+    // Setters
+    static void setLocation(int l){location = l;}
 };
