@@ -1,3 +1,6 @@
+// Name: Patience Lamb
+// Convert memory contents, determine instruction, and halt
+
 #include <string>
 #include "InstructionConversion.hh"
 #include "readWriteLoadStore.hh"
@@ -11,6 +14,8 @@ int InstructionConversion::addr;
 std::string InstructionConversion::instruction;
 std::string InstructionConversion::address;
 
+
+// Convert from memory contents to instruction and addresse
 void InstructionConversion::convert(int memory){
   std::string str = std::to_string(memory);
   instruction = str.substr(0,2);
@@ -19,11 +24,13 @@ void InstructionConversion::convert(int memory){
   addr = std::stoi(address);
 }
 
+// Stop program and write WrittenValues array to output
 void InstructionConversion::halt(){
-  //exit(0);
   WriteProgram::writeToOutput(readWriteLoadStore::getWrittenValues());
 }
 
+// Determine the instruction to be executed, and return the instruction after being
+// executed.
 std::string InstructionConversion::determineIns(){
   // I hate this switch statement but it works
   switch (instr) {

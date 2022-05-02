@@ -1,3 +1,6 @@
+// Name: Patience Lamb
+// Gets contents of a file and puts it in memory
+
 #include "ReadProgram.hh"
 #include "Memory.hh"
 #include "UserControl.hh"
@@ -8,6 +11,7 @@ std::ifstream ReadProgram::file;
 int ReadProgram::lineNum;
 std::string ReadProgram::contents;
 
+// Reads contents of a file specified by user then puts it into the memory vector
 void ReadProgram::read(){
   lineNum = 0;
    file.exceptions(std::ifstream::badbit); //I dont see why to check for badbits
@@ -22,7 +26,6 @@ void ReadProgram::read(){
      while(getline(file, tp)){
        values = std::stoi(tp);
       Memory::setMemory(lineNum, values);
-      // std::cout << Memory::memory.at(lineNum);
        lineNum++;
      }
    }
