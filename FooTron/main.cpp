@@ -15,6 +15,9 @@
 // ../Examples/footronSample3.txt
 
 
+//NOTE: ALL COMMENTS ARE IN THE CPP FILE
+// Used CMake 3.20 to compile. See README.md for details
+
 int main(int argc, char const *argv[]) {
   int a = 0;
   UserDisplay::printStartDisplay();
